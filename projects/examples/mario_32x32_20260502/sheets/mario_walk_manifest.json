@@ -1,0 +1,23 @@
+{
+  "sprite_sheet": "mario_walk.png",
+  "frame_size": "32x32",
+  "layout": "4 rows x 3 frames",
+  "directions": {
+    "down": {
+      "row": 0,
+      "frames": 3
+    },
+    "up": {
+      "row": 1,
+      "frames": 3
+    },
+    "left": {
+      "row": 2,
+      "frames": 3
+    },
+    "right": {
+      "row": 3,
+      "frames": 3
+    }
+  }
+}

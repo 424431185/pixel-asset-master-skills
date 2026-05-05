@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+ENV/
+
+# Tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local generated asset projects (keep README and examples)
+projects/*
+!projects/README.md
+!projects/examples/
+!projects/examples/**
+
+# Local nested repositories
+/ppt-*/
+
+# Generated exports and packaged files
+exports/
+*.zip
+*.tar
+*.tar.gz
+*.7z
+
+# Image/editor temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+# IDE local settings
+.vscode/
+.idea/

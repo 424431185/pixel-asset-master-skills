@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pixel Asset Master</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #faf8f5;
+      --surface:   #ffffff;
+      --border:    #e8e2d9;
+      --text:      #2c2417;
+      --muted:     #8a7e6b;
+      --accent:    #c4575a;
+      --accent-l:  #f5e1e2;
+      --green:     #5a8a5e;
+      --green-l:   #e4f0e5;
+      --gold:      #b8943e;
+      --gold-l:    #f7f0e0;
+      --ink:       #3a3228;
+      --serif:     'Noto Serif SC', 'Georgia', serif;
+      --sans:      'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono:      'JetBrains Mono', 'Courier New', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--accent); text-decoration: none; transition: color .2s; }
+    a:hover { color: var(--ink); }
+
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+
+    /* ── Nav ─────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250,248,245,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+
+    .nav-brand {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--ink);
+      letter-spacing: .02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: .84rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--ink);
+      padding: 6px 12px;
+      font-family: var(--sans);
+      font-size: .78rem;
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .lang-toggle:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ── Hero ─────────────────────────────────────── */
+    .hero {
+      padding: 80px 0 64px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      min-height: 520px;
+    }
+
+    .hero-text h1 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.3;
+      margin-bottom: 16px;
+    }
+
+    .hero-text h1 span { color: var(--accent); }
+
+    .hero-text p {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 440px;
+      margin-bottom: 28px;
+      line-height: 1.8;
+    }
+
+    .hero-badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .03em;
+    }
+    .tag--red   { background: var(--accent-l); color: var(--accent); }
+    .tag--green { background: var(--green-l);  color: var(--green); }
+    .tag--gold  { background: var(--gold-l);   color: var(--gold); }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: var(--ink);
+      color: #fff;
+      font-weight: 600;
+      font-size: .9rem;
+      border-radius: 8px;
+      transition: transform .15s, box-shadow .15s;
+    }
+    .hero-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(58,50,40,.2);
+      color: #fff;
+    }
+
+    .hero-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-image canvas {
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 8px 40px rgba(58,50,40,.12);
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+
+    /* ── Section base ─────────────────────────────── */
+    section { padding: 72px 0; }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .section-header h2 {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .section-header p {
+      font-size: .95rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: var(--accent);
+      margin: 16px auto 0;
+      border-radius: 1px;
+    }
+
+    /* ── Pipeline ─────────────────────────────────── */
+    .pipeline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+      align-items: center;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .pipe-step {
+      padding: 8px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: .82rem;
+      font-weight: 500;
+      color: var(--ink);
+      transition: border-color .2s;
+    }
+    .pipe-step:hover { border-color: var(--accent); }
+
+    .pipe-arrow { color: var(--border); font-size: .9rem; }
+
+    /* ── Features ─────────────────────────────────── */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .feat {
+      padding: 28px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .feat:hover {
+      border-color: var(--accent);
+      box-shadow: 0 2px 16px rgba(196,87,90,.08);
+    }
+
+    .feat-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+    }
+    .feat-icon--red   { background: var(--accent-l); }
+    .feat-icon--green { background: var(--green-l); }
+    .feat-icon--gold  { background: var(--gold-l); }
+
+    .feat h3 {
+      font-size: .95rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .feat p {
+      font-size: .84rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── Showcase ─────────────────────────────────── */
+    .showcase-hero {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .showcase-hero canvas {
+      max-width: 480px;
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 6px 32px rgba(58,50,40,.1);
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+
+    .showcase-hero .caption {
+      margin-top: 12px;
+      font-size: .82rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .action-btns {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .action-btn {
+      padding: 4px 14px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--surface);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: .78rem;
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .action-btn:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .action-btn.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .asset-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 18px;
+      margin-top: 34px;
+    }
+
+    .asset-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      box-shadow: 0 4px 18px rgba(58,50,40,.06);
+    }
+
+    .asset-card img {
+      width: 100%;
+      max-height: 160px;
+      object-fit: contain;
+      border-radius: 8px;
+      background:
+        linear-gradient(45deg, #efe7dc 25%, transparent 25%),
+        linear-gradient(-45deg, #efe7dc 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #efe7dc 75%),
+        linear-gradient(-45deg, transparent 75%, #efe7dc 75%);
+      background-size: 16px 16px;
+      background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+
+    .asset-card canvas {
+      width: 100%;
+      max-height: 160px;
+      border-radius: 8px;
+      background:
+        linear-gradient(45deg, #efe7dc 25%, transparent 25%),
+        linear-gradient(-45deg, #efe7dc 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #efe7dc 75%),
+        linear-gradient(-45deg, transparent 75%, #efe7dc 75%);
+      background-size: 16px 16px;
+      background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+
+    .asset-card h4 {
+      margin-top: 12px;
+      font-family: var(--serif);
+      font-size: .98rem;
+      color: var(--ink);
+    }
+
+    .asset-card p {
+      margin-top: 4px;
+      font-size: .78rem;
+      color: var(--muted);
+    }
+
+    /* ── Quick Start ──────────────────────────────── */
+    .qs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .qs-step {
+      padding: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      position: relative;
+      padding-left: 52px;
+    }
+
+    .qs-num {
+      position: absolute;
+      left: 16px;
+      top: 20px;
+      width: 24px;
+      height: 24px;
+      line-height: 24px;
+      text-align: center;
+      background: var(--ink);
+      color: #fff;
+      font-size: .75rem;
+      font-weight: 700;
+      border-radius: 6px;
+    }
+
+    .qs-step h4 { font-size: .88rem; font-weight: 600; margin-bottom: 6px; }
+
+    pre {
+      background: var(--ink);
+      border-radius: 8px;
+      padding: 12px 16px;
+      overflow-x: auto;
+      font-family: var(--mono);
+      font-size: .78rem;
+      line-height: 1.7;
+      color: #a7f070;
+    }
+
+    code {
+      font-family: var(--mono);
+      background: var(--accent-l);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: .85em;
+      color: var(--accent);
+    }
+
+    /* ── Docs ─────────────────────────────────────── */
+    .docs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .doc-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: border-color .2s;
+    }
+    .doc-link:hover { border-color: var(--accent); }
+
+    .doc-link .icon { font-size: 1.1rem; }
+    .doc-link .label { font-size: .85rem; font-weight: 500; }
+    .doc-link .desc  { font-size: .72rem; color: var(--muted); }
+
+    /* ── Footer ───────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    /* ── Responsive ───────────────────────────────── */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; padding: 48px 0 40px; }
+      .hero-image { order: -1; }
+      .hero-image img { max-width: 320px; }
+      .features { grid-template-columns: 1fr 1fr; }
+      .qs-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .features { grid-template-columns: 1fr; }
+      .nav-links { gap: 16px; }
+    }
+    /* ── Full-page petal overlay ─────────────────── */
+    #petalCanvas {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ 全页花瓣粒子层 ═══════════════════════════ -->
+  <canvas id="petalCanvas"></canvas>
+
+  <!-- ═══ Nav ══════════════════════════════════════ -->
+  <nav>
+    <div class="container">
+      <span class="nav-brand">Pixel Asset Master</span>
+      <div class="nav-links">
+        <a href="#features" data-i18n="nav.features">Features</a>
+        <a href="#showcase" data-i18n="nav.showcase">Showcase</a>
+        <a href="#quick-start" data-i18n="nav.quickStart">Quick Start</a>
+        <a href="#docs" data-i18n="nav.docs">Docs</a>
+        <button class="lang-toggle" id="langToggle" type="button">中文</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══ Hero ═════════════════════════════════════ -->
+  <header class="hero container">
+    <div class="hero-text">
+      <h1 data-i18n-html="hero.title">AI-Driven <span>Pixel Art</span> for Games</h1>
+      <p data-i18n="hero.subtitle">Drop in a game concept, art direction, or reference images — get back a structured pixel asset project with sprites, tiles, items, animation frames, sprite sheets, and export metadata.</p>
+      <div class="hero-badges">
+        <span class="tag tag--red">v0.1.0</span>
+        <span class="tag tag--green">MIT License</span>
+        <span class="tag tag--gold">Python 3.8+</span>
+      </div>
+      <a class="hero-cta" href="#quick-start" data-i18n="hero.cta">Get Started →</a>
+    </div>
+    <div class="hero-image">
+      <canvas id="cvHero" width="480" height="480"></canvas>
+    </div>
+  </header>
+
+  <!-- ═══ Pipeline ═════════════════════════════════ -->
+  <section id="pipeline">
+    <div class="container">
+      <div class="section-header">
+        <h2 data-i18n="pipeline.title">How It Works</h2>
+        <p data-i18n="pipeline.subtitle">A strict serial pipeline that keeps every asset consistent from concept to export.</p>
+        <div class="divider"></div>
+      </div>
+      <div class="pipeline">
+        <span class="pipe-step" data-i18n="pipeline.step1">Game Description</span><span class="pipe-arrow">→</span>
+        <span class="pipe-step" data-i18n="pipeline.step2">Create Project</span><span class="pipe-arrow">→</span>
+        <span class="pipe-step" data-i18n="pipeline.step3">Style Confirmation</span><span class="pipe-arrow">→</span>
+        <span class="pipe-step" data-i18n="pipeline.step4">Strategist</span><span class="pipe-arrow">→</span>
+        <span class="pipe-step" data-i18n="pipeline.step5">Executor</span><span class="pipe-arrow">→</span>
+        <span class="pipe-step" data-i18n="pipeline.step6">Post-processing</span><span class="pipe-arrow">→</span>
+        <span class="pipe-step" data-i18n="pipeline.step7">Export</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Features ═════════════════════════════════ -->
+  <section id="features">
+    <div class="container">
+      <div class="section-header">
+        <h2 data-i18n="features.title">Features</h2>
+        <p data-i18n="features.subtitle">Built for pixel-perfect game asset production, not generic image generation.</p>
+        <div class="divider"></div>
+      </div>
+      <div class="features">
+        <div class="feat">
+          <div class="feat-icon feat-icon--red">🎮</div>
+          <h3 data-i18n="features.f1.title">Game-Ready Structure</h3>
+          <p data-i18n="features.f1.text">Assets grouped by characters, tiles, items, UI, effects, backgrounds — ready to drop into any engine.</p>
+        </div>
+        <div class="feat">
+          <div class="feat-icon feat-icon--green">📋</div>
+          <h3 data-i18n="features.f2.title">Strict Visual Contract</h3>
+          <p data-i18n-html="features.f2.text"><code>spec_lock.md</code> records canvas size, palette, style, color budget, and forbidden rendering patterns.</p>
+        </div>
+        <div class="feat">
+          <div class="feat-icon feat-icon--gold">🎨</div>
+          <h3 data-i18n="features.f3.title">Reusable Templates</h3>
+          <p data-i18n="features.f3.text">Built-in palettes (PICO-8, DB32, Endesga 32, Sweetie 16…), size presets, and sprite layout references.</p>
+        </div>
+        <div class="feat">
+          <div class="feat-icon feat-icon--green">✅</div>
+          <h3 data-i18n="features.f4.title">Validation Tools</h3>
+          <p data-i18n="features.f4.text">Scripts check palette compliance, color budget, image format, and sprite sheet export.</p>
+        </div>
+        <div class="feat">
+          <div class="feat-icon feat-icon--red">🤖</div>
+          <h3 data-i18n="features.f5.title">Agent-Friendly Process</h3>
+          <p data-i18n="features.f5.text">Staged confirmations reduce vague prompts and keep long asset runs consistent.</p>
+        </div>
+        <div class="feat">
+          <div class="feat-icon feat-icon--gold">🔒</div>
+          <h3 data-i18n="features.f6.title">Local-First Workflow</h3>
+          <p data-i18n-html="features.f6.text">Project files stored locally under <code>projects/</code>. API usage depends on your own AI tool or image provider.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Showcase ═════════════════════════════════ -->
+  <section id="showcase">
+    <div class="container">
+      <div class="section-header">
+        <h2 data-i18n="showcase.title">Asset Showcase</h2>
+        <p data-i18n="showcase.subtitle">Example assets generated with the skill pipeline — from single sprites to animated scenes.</p>
+        <div class="divider"></div>
+      </div>
+
+      <div class="showcase-hero">
+        <canvas id="cvShowcase" width="480" height="480"></canvas>
+        <p class="caption" data-i18n="showcase.sakura">Cherry Blossom Tree — 6-frame sprite sheet animation, ink-wash pixel art style</p>
+      </div>
+
+      <div class="asset-gallery">
+        <div class="asset-card">
+          <canvas class="sprite-preview" width="160" height="160" data-src="./bamboo_sheet.png" data-frames="4" data-fps="6"></canvas>
+          <h4 data-i18n="assets.bamboo.title">Bamboo Sheet</h4>
+          <p data-i18n="assets.bamboo.text">水墨竹影序列帧</p>
+        </div>
+        <div class="asset-card">
+          <canvas class="sprite-preview" width="160" height="160" data-src="./tree_willow_sheet.png" data-frames="6" data-fps="6"></canvas>
+          <h4 data-i18n="assets.willow.title">Willow Tree Sheet</h4>
+          <p data-i18n="assets.willow.text">柳树动态序列帧</p>
+        </div>
+        <div class="asset-card">
+          <canvas class="sprite-preview" width="160" height="160" data-src="./bird_flock_sheet.png" data-frames="6" data-fps="8"></canvas>
+          <h4 data-i18n="assets.bird.title">Bird Flock Sheet</h4>
+          <p data-i18n="assets.bird.text">鸟群飞行动画</p>
+        </div>
+        <div class="asset-card">
+          <canvas class="sprite-preview" width="160" height="160" data-src="./lantern_sheet.png" data-frames="4" data-fps="6"></canvas>
+          <h4 data-i18n="assets.lantern.title">Lantern Sheet</h4>
+          <p data-i18n="assets.lantern.text">灯笼微光序列帧</p>
+        </div>
+        <div class="asset-card">
+          <img src="./tile_grass.png" alt="Grass tile">
+          <h4 data-i18n="assets.grass.title">Grass Tile</h4>
+          <p data-i18n="assets.grass.text">草地无缝瓦片</p>
+        </div>
+        <div class="asset-card">
+          <img src="./tile_path.png" alt="Path tile">
+          <h4 data-i18n="assets.path.title">Path Tile</h4>
+          <p data-i18n="assets.path.text">石径地表瓦片</p>
+        </div>
+        <div class="asset-card">
+          <img src="./tile_sand.png" alt="Sand tile">
+          <h4 data-i18n="assets.sand.title">Sand Tile</h4>
+          <p data-i18n="assets.sand.text">沙地无缝瓦片</p>
+        </div>
+        <div class="asset-card">
+          <img src="./tile_mud.png" alt="Mud tile">
+          <h4 data-i18n="assets.mud.title">Mud Tile</h4>
+          <p data-i18n="assets.mud.text">泥土地表瓦片</p>
+        </div>
+        <div class="asset-card">
+          <img src="./tile_clay.png" alt="Clay tile">
+          <h4 data-i18n="assets.clay.title">Clay Tile</h4>
+          <p data-i18n="assets.clay.text">陶土地表瓦片</p>
+        </div>
+        <div class="asset-card">
+          <img src="./tile_jade.png" alt="Jade tile">
+          <h4 data-i18n="assets.jade.title">Jade Tile</h4>
+          <p data-i18n="assets.jade.text">玉石纹理瓦片</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ Quick Start ══════════════════════════════ -->
+  <section id="quick-start">
+    <div class="container">
+      <div class="section-header">
+        <h2 data-i18n="quick.title">Quick Start</h2>
+        <p data-i18n="quick.subtitle">From clone to first pixel asset project in under a minute.</p>
+        <div class="divider"></div>
+      </div>
+      <div class="qs-grid">
+        <div class="qs-step"><span class="qs-num">1</span><h4 data-i18n="quick.step1">Install dependencies</h4><pre>pip install -r requirements.txt</pre></div>
+        <div class="qs-step"><span class="qs-num">2</span><h4 data-i18n="quick.step2">Clone or download</h4><pre>git clone &lt;repo-url&gt;
+cd pixel-asset-master-skills</pre></div>
+        <div class="qs-step"><span class="qs-num">3</span><h4 data-i18n="quick.step3">Create a project</h4><pre>python skills/pixel-asset-master/\
+scripts/project_manager.py \
+init demo --size 32x32 \
+--palette DB32</pre></div>
+        <div class="qs-step"><span class="qs-num">4</span><h4 data-i18n="quick.step4">Validate &amp; export</h4><pre>python skills/pixel-asset-master/\
+scripts/asset_validator.py \
+projects/demo_32x32_YYYYMMDD</pre></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Documentation ════════════════════════════ -->
+  <section id="docs">
+    <div class="container">
+      <div class="section-header">
+        <h2 data-i18n="docs.title">Documentation</h2>
+        <p data-i18n="docs.subtitle">Everything you need to understand, use, and contribute to the skill.</p>
+        <div class="divider"></div>
+      </div>
+      <div class="docs-grid">
+        <a class="doc-link" href="./skills/pixel-asset-master/SKILL.md"><span class="icon">📖</span><div><div class="label">SKILL.md</div><div class="desc" data-i18n="docs.skill">Core workflow &amp; rules</div></div></a>
+        <a class="doc-link" href="./skills/pixel-asset-master/scripts/README.md"><span class="icon">🛠️</span><div><div class="label">Scripts</div><div class="desc" data-i18n="docs.scripts">Command reference</div></div></a>
+        <a class="doc-link" href="./docs/PROJECT_STRUCTURE.md"><span class="icon">🏗️</span><div><div class="label" data-i18n="docs.structure">Structure</div><div class="desc" data-i18n="docs.structureDesc">Repo layout &amp; boundaries</div></div></a>
+        <a class="doc-link" href="./CONTRIBUTING.md"><span class="icon">🤝</span><div><div class="label" data-i18n="docs.contributing">Contributing</div><div class="desc" data-i18n="docs.contributingDesc">How to get involved</div></div></a>
+        <a class="doc-link" href="./SECURITY.md"><span class="icon">🔐</span><div><div class="label" data-i18n="docs.security">Security</div><div class="desc" data-i18n="docs.securityDesc">Reporting &amp; scope</div></div></a>
+        <a class="doc-link" href="./LICENSE"><span class="icon">⚖️</span><div><div class="label">License</div><div class="desc">MIT</div></div></a>
+      </div>
+    </div>
+  </section>
+
+  <footer><div class="container"><p>Pixel Asset Master &middot; MIT License</p></div></footer>
+
+<!-- ═════════════════════════════════════════════════
+     Sakura Animation &amp; Petal Particles
+     ═════════════════════════════════════════════════ -->
+<script>
+const I18N = {
+  en: {
+    'nav.features': 'Features',
+    'nav.showcase': 'Showcase',
+    'nav.quickStart': 'Quick Start',
+    'nav.docs': 'Docs',
+    'hero.title': 'AI-Driven <span>Pixel Art</span> for Games',
+    'hero.subtitle': 'Drop in a game concept, art direction, or reference images — get back a structured pixel asset project with sprites, tiles, items, animation frames, sprite sheets, and export metadata.',
+    'hero.cta': 'Get Started →',
+    'pipeline.title': 'How It Works',
+    'pipeline.subtitle': 'A strict serial pipeline that keeps every asset consistent from concept to export.',
+    'pipeline.step1': 'Game Description',
+    'pipeline.step2': 'Create Project',
+    'pipeline.step3': 'Style Confirmation',
+    'pipeline.step4': 'Strategist',
+    'pipeline.step5': 'Executor',
+    'pipeline.step6': 'Post-processing',
+    'pipeline.step7': 'Export',
+    'features.title': 'Features',
+    'features.subtitle': 'Built for pixel-perfect game asset production, not generic image generation.',
+    'features.f1.title': 'Game-Ready Structure',
+    'features.f1.text': 'Assets grouped by characters, tiles, items, UI, effects, backgrounds — ready to drop into any engine.',
+    'features.f2.title': 'Strict Visual Contract',
+    'features.f2.text': '<code>spec_lock.md</code> records canvas size, palette, style, color budget, and forbidden rendering patterns.',
+    'features.f3.title': 'Reusable Templates',
+    'features.f3.text': 'Built-in palettes (PICO-8, DB32, Endesga 32, Sweetie 16…), size presets, and sprite layout references.',
+    'features.f4.title': 'Validation Tools',
+    'features.f4.text': 'Scripts check palette compliance, color budget, image format, and sprite sheet export.',
+    'features.f5.title': 'Agent-Friendly Process',
+    'features.f5.text': 'Staged confirmations reduce vague prompts and keep long asset runs consistent.',
+    'features.f6.title': 'Local-First Workflow',
+    'features.f6.text': 'Project files stored locally under <code>projects/</code>. API usage depends on your own AI tool or image provider.',
+    'showcase.title': 'Asset Showcase',
+    'showcase.subtitle': 'Example assets generated with the skill pipeline — from single sprites to animated scenes.',
+    'showcase.sakura': 'Cherry Blossom Tree — 6-frame sprite sheet animation, ink-wash pixel art style',
+    'assets.bamboo.title': 'Bamboo Sheet',
+    'assets.bamboo.text': 'Ink-wash bamboo animation',
+    'assets.willow.title': 'Willow Tree Sheet',
+    'assets.willow.text': 'Animated willow tree sprite sheet',
+    'assets.bird.title': 'Bird Flock Sheet',
+    'assets.bird.text': 'Flying bird flock animation',
+    'assets.lantern.title': 'Lantern Sheet',
+    'assets.lantern.text': 'Soft lantern glow animation',
+    'assets.grass.title': 'Grass Tile',
+    'assets.grass.text': 'Seamless grass terrain tile',
+    'assets.path.title': 'Path Tile',
+    'assets.path.text': 'Stone path terrain tile',
+    'assets.sand.title': 'Sand Tile',
+    'assets.sand.text': 'Seamless sand terrain tile',
+    'assets.mud.title': 'Mud Tile',
+    'assets.mud.text': 'Mud terrain tile',
+    'assets.clay.title': 'Clay Tile',
+    'assets.clay.text': 'Clay terrain tile',
+    'assets.jade.title': 'Jade Tile',
+    'assets.jade.text': 'Jade texture terrain tile',
+    'quick.title': 'Quick Start',
+    'quick.subtitle': 'From clone to first pixel asset project in under a minute.',
+    'quick.step1': 'Install dependencies',
+    'quick.step2': 'Clone or download',
+    'quick.step3': 'Create a project',
+    'quick.step4': 'Validate & export',
+    'docs.title': 'Documentation',
+    'docs.subtitle': 'Everything you need to understand, use, and contribute to the skill.',
+    'docs.skill': 'Core workflow & rules',
+    'docs.scripts': 'Command reference',
+    'docs.structure': 'Structure',
+    'docs.structureDesc': 'Repo layout & boundaries',
+    'docs.contributing': 'Contributing',
+    'docs.contributingDesc': 'How to get involved',
+    'docs.security': 'Security',
+    'docs.securityDesc': 'Reporting & scope',
+  },
+  zh: {
+    'nav.features': '功能',
+    'nav.showcase': '展示',
+    'nav.quickStart': '快速开始',
+    'nav.docs': '文档',
+    'hero.title': '面向游戏的 AI <span>像素素材</span> 生产',
+    'hero.subtitle': '输入游戏概念、美术方向或参考图，即可得到结构化像素素材项目：角色、瓦片、物品、动画帧、精灵图和导出元数据。',
+    'hero.cta': '开始使用 →',
+    'pipeline.title': '工作流程',
+    'pipeline.subtitle': '严格的串行流程，让每个素材从概念到导出都保持一致。',
+    'pipeline.step1': '游戏描述',
+    'pipeline.step2': '创建项目',
+    'pipeline.step3': '风格确认',
+    'pipeline.step4': '策略规划',
+    'pipeline.step5': '执行生成',
+    'pipeline.step6': '后处理',
+    'pipeline.step7': '导出',
+    'features.title': '功能',
+    'features.subtitle': '专为像素级游戏素材生产设计，而不是泛用图片生成。',
+    'features.f1.title': '游戏可用结构',
+    'features.f1.text': '素材按角色、瓦片、物品、UI、特效、背景分组，可直接接入游戏引擎。',
+    'features.f2.title': '严格视觉契约',
+    'features.f2.text': '<code>spec_lock.md</code> 记录画布尺寸、调色板、风格、颜色预算和禁止的渲染模式。',
+    'features.f3.title': '可复用模板',
+    'features.f3.text': '内置 PICO-8、DB32、Endesga 32、Sweetie 16 等调色板、尺寸预设和精灵布局参考。',
+    'features.f4.title': '校验工具',
+    'features.f4.text': '脚本可检查调色板合规、颜色预算、图片格式和精灵图导出。',
+    'features.f5.title': '适合 Agent 的流程',
+    'features.f5.text': '分阶段确认减少模糊提示，让长流程素材生成保持稳定。',
+    'features.f6.title': '本地优先工作流',
+    'features.f6.text': '项目文件保存在本地 <code>projects/</code> 下，API 使用取决于你的 AI 工具或图片服务。',
+    'showcase.title': '素材展示',
+    'showcase.subtitle': '由 skill 流程生成的示例素材：从单个精灵到动画场景。',
+    'showcase.sakura': '樱花树 — 6 帧精灵图动画，水墨像素风',
+    'assets.bamboo.title': '竹子序列帧',
+    'assets.bamboo.text': '水墨竹影动画',
+    'assets.willow.title': '柳树序列帧',
+    'assets.willow.text': '柳树动态精灵图',
+    'assets.bird.title': '鸟群序列帧',
+    'assets.bird.text': '鸟群飞行动画',
+    'assets.lantern.title': '灯笼序列帧',
+    'assets.lantern.text': '灯笼微光动画',
+    'assets.grass.title': '草地瓦片',
+    'assets.grass.text': '草地无缝地表瓦片',
+    'assets.path.title': '石径瓦片',
+    'assets.path.text': '石径地表瓦片',
+    'assets.sand.title': '沙地瓦片',
+    'assets.sand.text': '沙地无缝地表瓦片',
+    'assets.mud.title': '泥地瓦片',
+    'assets.mud.text': '泥土地表瓦片',
+    'assets.clay.title': '陶土瓦片',
+    'assets.clay.text': '陶土地表瓦片',
+    'assets.jade.title': '玉石瓦片',
+    'assets.jade.text': '玉石纹理地表瓦片',
+    'quick.title': '快速开始',
+    'quick.subtitle': '从克隆仓库到创建第一个像素素材项目，只需不到一分钟。',
+    'quick.step1': '安装依赖',
+    'quick.step2': '克隆或下载',
+    'quick.step3': '创建项目',
+    'quick.step4': '校验并导出',
+    'docs.title': '文档',
+    'docs.subtitle': '理解、使用和参与这个 skill 所需的全部入口。',
+    'docs.skill': '核心流程与规则',
+    'docs.scripts': '命令参考',
+    'docs.structure': '结构',
+    'docs.structureDesc': '仓库布局与边界',
+    'docs.contributing': '贡献',
+    'docs.contributingDesc': '如何参与项目',
+    'docs.security': '安全',
+    'docs.securityDesc': '报告方式与范围',
+  }
+};
+
+let currentLang = localStorage.getItem('pam-lang') || 'zh';
+
+function applyLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('pam-lang', lang);
+  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (I18N[lang][key]) el.textContent = I18N[lang][key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.dataset.i18nHtml;
+    if (I18N[lang][key]) el.innerHTML = I18N[lang][key];
+  });
+  const btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = lang === 'zh' ? 'English' : '中文';
+}
+
+function initLanguageToggle() {
+  const btn = document.getElementById('langToggle');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    applyLanguage(currentLang === 'zh' ? 'en' : 'zh');
+  });
+  applyLanguage(currentLang);
+}
+
+// ── Sakura sprite sheet animation ─────────────────────
+// sakura.png: 6 frames, 384x64 total, each frame 64x64
+const SAKURA_SRC = './sakura.png';
+const sakuraImg = new Image();
+sakuraImg.src = SAKURA_SRC;
+const SAKURA_FRAMES = 6;
+const SAKURA_FW = 64;  // 单帧宽
+const SAKURA_FH = 64;  // 单帧高
+const SAKURA_FPS = 8;  // 播放帧率
+
+function initSakuraAnim(canvasId) {
+  const cv = document.getElementById(canvasId);
+  if (!cv) return;
+  const ctx = cv.getContext('2d');
+  const cw = cv.width, ch = cv.height;
+  let curFrame = 0;
+  let lastTime = 0;
+  const interval = 1000 / SAKURA_FPS;
+
+  function frame(ts) {
+    if (ts - lastTime >= interval) {
+      lastTime = ts;
+      ctx.clearRect(0, 0, cw, ch);
+      if (sakuraImg.complete && sakuraImg.naturalWidth > 0) {
+        // 从精灵图中裁切当前帧，缩放绘制到 canvas
+        const sx = curFrame * SAKURA_FW;
+        ctx.imageSmoothingEnabled = false;
+        ctx.drawImage(sakuraImg, sx, 0, SAKURA_FW, SAKURA_FH, 0, 0, cw, ch);
+      }
+      curFrame = (curFrame + 1) % SAKURA_FRAMES;
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
+function initSpritePreview(canvas) {
+  const src = canvas.dataset.src;
+  const frames = parseInt(canvas.dataset.frames || '1', 10);
+  const fps = parseInt(canvas.dataset.fps || '6', 10);
+  const img = new Image();
+  img.src = src;
+  const ctx = canvas.getContext('2d');
+  let curFrame = 0;
+  let lastTime = 0;
+  const interval = 1000 / fps;
+
+  function frame(ts) {
+    if (ts - lastTime >= interval) {
+      lastTime = ts;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (img.complete && img.naturalWidth > 0) {
+        const fw = Math.floor(img.naturalWidth / frames);
+        const fh = img.naturalHeight;
+        ctx.imageSmoothingEnabled = false;
+        ctx.drawImage(img, curFrame * fw, 0, fw, fh, 0, 0, canvas.width, canvas.height);
+        curFrame = (curFrame + 1) % frames;
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
+function initSpritePreviews() {
+  document.querySelectorAll('.sprite-preview').forEach(initSpritePreview);
+}
+
+// ── 全页花瓣粒子 ────────────────────────────────────
+const PETAL_COLORS = ['#ffb7c5','#ffd1dc','#f8a4b8','#e8789a','#ffc0cb','#f5c6d0'];
+
+class Petal {
+  constructor(w, h, initial) {
+    this.w = w; this.h = h;
+    this.reset(initial);
+  }
+  reset(initial) {
+    this.x = Math.random() * this.w;
+    this.y = initial ? Math.random() * this.h : -10;
+    this.size = 3 + Math.random() * 4;
+    this.speedY = 0.4 + Math.random() * 0.8;
+    this.speedX = -0.3 + Math.random() * 0.6;
+    this.rot = Math.random() * Math.PI * 2;
+    this.rotSpeed = (Math.random() - 0.5) * 0.03;
+    this.color = PETAL_COLORS[Math.floor(Math.random() * PETAL_COLORS.length)];
+    this.alpha = 0.35 + Math.random() * 0.4;
+    this.wobble = Math.random() * 100;
+  }
+  update() {
+    this.y += this.speedY;
+    this.x += this.speedX + Math.sin((this.y + this.wobble) * 0.015) * 0.5;
+    this.rot += this.rotSpeed;
+    if (this.y > this.h + 12) this.reset(false);
+    if (this.x < -12) this.x = this.w + 12;
+    if (this.x > this.w + 12) this.x = -12;
+  }
+  draw(ctx) {
+    ctx.save();
+    ctx.translate(this.x, this.y);
+    ctx.rotate(this.rot);
+    ctx.globalAlpha = this.alpha;
+    ctx.fillStyle = this.color;
+    ctx.beginPath();
+    ctx.ellipse(0, 0, this.size, this.size * 0.55, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+}
+
+function initPetals() {
+  const cv = document.getElementById('petalCanvas');
+  if (!cv) return;
+  const ctx = cv.getContext('2d');
+  let petals = [];
+
+  function resize() {
+    cv.width = window.innerWidth;
+    cv.height = window.innerHeight;
+    // 根据屏幕面积决定花瓣数量
+    const count = Math.floor(cv.width * cv.height / 12000);
+    while (petals.length < count) petals.push(new Petal(cv.width, cv.height, true));
+    if (petals.length > count) petals.length = count;
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+
+  function frame() {
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    petals.forEach(p => { p.update(); p.draw(ctx); });
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
+window.addEventListener('DOMContentLoaded',()=>{
+  initLanguageToggle();
+  initSakuraAnim('cvHero');
+  initSakuraAnim('cvShowcase');
+  initSpritePreviews();
+  initPetals();
+});
+</script>
+</body>
+</html>

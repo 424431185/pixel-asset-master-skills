@@ -1,0 +1,58 @@
+[
+  {
+    "name": "PICO-8",
+    "colors": 16,
+    "tags": ["8-bit", "fantasy", "gamejam", "tiny"],
+    "hex": ["#000000","#1D2B53","#7E2553","#008751","#AB5236","#5F574F","#C2C3C7","#FFF1E8","#FF004D","#FFA300","#FFEC27","#00E436","#29ADFF","#83769C","#FF77A8","#FFCCAA"],
+    "description": "PICO-8 fantasy console palette. 16 colors, perfect for tiny games and game jams."
+  },
+  {
+    "name": "DB32",
+    "colors": 32,
+    "tags": ["versatile", "indie", "general"],
+    "hex": ["#000000","#222034","#45283C","#663931","#8F563B","#DF7126","#D9A066","#EEC39A","#FBF236","#99E550","#6ABE30","#37946E","#4B692F","#524B24","#323C39","#3F3F74"],
+    "description": "DawnBringer 32-color palette. The most popular pixel art palette, versatile for any style."
+  },
+  {
+    "name": "Endesga 32",
+    "colors": 32,
+    "tags": ["vibrant", "colorful", "nature"],
+    "hex": ["#be4a2f","#d77643","#ead4aa","#e4a672","#b86f50","#733e39","#3e2731","#a22633","#e43b44","#f77622","#feae34","#fee761","#63c74d","#3e8948","#265c42","#193c3e"],
+    "description": "Endesga 32-color palette. Vibrant and saturated, great for colorful worlds."
+  },
+  {
+    "name": "Resurrect 64",
+    "colors": 64,
+    "tags": ["rich", "detailed", "environment"],
+    "hex": ["#2c2137","#3b3255","#404c6e","#4c6085","#5d7494","#8295a3","#afc0d1","#e0dfe4","#6e2727","#b33831","#e25742","#e8836c","#eab39e","#f2d2b2","#f7e4c2","#fbf5e1"],
+    "description": "Resurrect 64-color palette. Rich and detailed, ideal for complex environments."
+  },
+  {
+    "name": "Sweetie 16",
+    "colors": 16,
+    "tags": ["pastel", "cute", "chibi"],
+    "hex": ["#1a1c2c","#5d275d","#b13e53","#ef7d57","#ffcd75","#a7f070","#38b764","#257179","#29366f","#3b5dc9","#41a6f6","#73eff7","#f4f4f4","#94b0c2","#566c86","#333c57"],
+    "description": "Sweetie 16 palette. Pastel and cute, perfect for chibi/cute style games."
+  },
+  {
+    "name": "Ink 5",
+    "colors": 5,
+    "tags": ["monochrome", "ink", "minimalist"],
+    "hex": ["#000000","#444444","#888888","#bbbbbb","#ffffff"],
+    "description": "5-shade monochrome palette. For ink-wash or minimalist black-and-white style."
+  },
+  {
+    "name": "Nuclear Blaze 8",
+    "colors": 8,
+    "tags": ["warm", "industrial", "dark"],
+    "hex": ["#0c0c0c","#3b1c1c","#7a2e2e","#b64545","#d67b4e","#e6a96e","#f0d4a8","#faf0e0"],
+    "description": "8-color warm palette. Dark industrial atmosphere with warm highlights."
+  },
+  {
+    "name": "Mushi 8",
+    "colors": 8,
+    "tags": ["nature", "organic", "forest"],
+    "hex": ["#1b1b2b","#3a3042","#5c6158","#8b9a7c","#c4cfa4","#e0dfc8","#f2f0e0","#faf8f0"],
+    "description": "8-color nature palette. Muted organic tones for forest/nature scenes."
+  }
+]

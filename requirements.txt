@@ -1,0 +1,5 @@
+# Pixel Asset Master dependencies.
+# Full list lives inside the skill directory.
+# Install from repo root:
+#   pip install -r requirements.txt
+-r skills/pixel-asset-master/requirements.txt

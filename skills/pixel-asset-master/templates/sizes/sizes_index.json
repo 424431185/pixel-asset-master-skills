@@ -1,0 +1,90 @@
+[
+  {
+    "name": "8x8",
+    "width": 8,
+    "height": 8,
+    "tags": ["tiny", "icon", "minimal"],
+    "max_colors": 4,
+    "recommended_for": "Tiny icons, minimal UI elements, game jam entries"
+  },
+  {
+    "name": "16x16",
+    "width": 16,
+    "height": 16,
+    "tags": ["nes", "8-bit", "classic"],
+    "max_colors": 8,
+    "recommended_for": "NES-style characters, simple items, basic tiles"
+  },
+  {
+    "name": "24x24",
+    "width": 24,
+    "height": 24,
+    "tags": ["intermediate", "rpg-maker"],
+    "max_colors": 16,
+    "recommended_for": "RPG Maker 2000/2003 style, intermediate detail"
+  },
+  {
+    "name": "32x32",
+    "width": 32,
+    "height": 32,
+    "tags": ["snes", "16-bit", "indie", "standard"],
+    "max_colors": 16,
+    "recommended_for": "SNES-style characters, detailed items, standard indie tiles"
+  },
+  {
+    "name": "48x48",
+    "width": 48,
+    "height": 48,
+    "tags": ["rpg-maker-mv", "hd"],
+    "max_colors": 24,
+    "recommended_for": "RPG Maker MV/MZ style, higher detail sprites"
+  },
+  {
+    "name": "64x64",
+    "width": 64,
+    "height": 64,
+    "tags": ["detailed", "boss", "portrait"],
+    "max_colors": 32,
+    "recommended_for": "Detailed characters, boss sprites, portrait art"
+  },
+  {
+    "name": "128x128",
+    "width": 128,
+    "height": 128,
+    "tags": ["large", "boss", "background"],
+    "max_colors": 48,
+    "recommended_for": "Boss sprites, detailed backgrounds, cut-in art"
+  },
+  {
+    "name": "256x256",
+    "width": 256,
+    "height": 256,
+    "tags": ["high-detail", "portrait", "cinematic"],
+    "max_colors": 64,
+    "recommended_for": "High-detail character portraits, cinematic cut-in art, detailed boss sprites"
+  },
+  {
+    "name": "512x512",
+    "width": 512,
+    "height": 512,
+    "tags": ["ultra-detail", "illustration", "key-art"],
+    "max_colors": 96,
+    "recommended_for": "Ultra-detailed key art, full illustrations, large scene sprites"
+  },
+  {
+    "name": "1024x1024",
+    "width": 1024,
+    "height": 1024,
+    "tags": ["print-quality", "poster", "wallpaper"],
+    "max_colors": 128,
+    "recommended_for": "Print-quality pixel art, poster/cover art, wallpaper assets"
+  },
+  {
+    "name": "2048x2048",
+    "width": 2048,
+    "height": 2048,
+    "tags": ["maximum", "print", "billboard"],
+    "max_colors": 256,
+    "recommended_for": "Maximum resolution pixel art, large-format print, billboard assets"
+  }
+]

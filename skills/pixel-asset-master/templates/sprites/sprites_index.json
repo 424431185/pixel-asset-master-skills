@@ -1,0 +1,225 @@
+[
+  {
+    "category": "characters",
+    "facing_directions": {
+      "4-dir": { "label": "4方向", "directions": ["down", "up", "left", "right"], "description": "俯视角RPG常用，上下左右四个朝向" },
+      "8-dir": { "label": "8方向", "directions": ["down", "up", "left", "right", "down-left", "down-right", "up-left", "up-right"], "description": "8方向移动游戏，斜向朝向" },
+      "side-only": { "label": "仅侧视", "directions": ["left", "right"], "description": "横版平台跳跃游戏，左右翻转复用" },
+      "single": { "label": "单朝向", "directions": ["front"], "description": "正面立绘/对话头像/卡牌游戏" }
+    },
+    "common_actions": [
+      { "name": "idle",    "label": "待机", "typical_frames": "2-4",  "description": "站立呼吸/微小动作" },
+      { "name": "walk",   "label": "走路", "typical_frames": "4-6",  "description": "慢速行走循环" },
+      { "name": "run",    "label": "跑步", "typical_frames": "6-8",  "description": "快速奔跑循环" },
+      { "name": "jump",   "label": "跳跃", "typical_frames": "4-6",  "description": "起跳+滞空" },
+      { "name": "fall",   "label": "落下", "typical_frames": "2-4",  "description": "下落/降落" },
+      { "name": "attack", "label": "攻击", "typical_frames": "4-6",  "description": "近战/远程攻击" },
+      { "name": "hurt",   "label": "受伤", "typical_frames": "2-3",  "description": "受击反应" },
+      { "name": "die",    "label": "死亡", "typical_frames": "4-6",  "description": "倒地死亡动画" },
+      { "name": "cast",   "label": "施法", "typical_frames": "4-6",  "description": "魔法/技能释放" },
+      { "name": "interact","label": "交互", "typical_frames": "2-4",  "description": "开箱/推拉/拾取" },
+      { "name": "climb",  "label": "攀爬", "typical_frames": "4-6",  "description": "爬梯/爬墙" },
+      { "name": "crouch", "label": "蹲伏", "typical_frames": "2-3",  "description": "蹲下/潜行" },
+      { "name": "roll",   "label": "翻滚", "typical_frames": "4-6",  "description": "闪避翻滚" },
+      { "name": "swim",   "label": "游泳", "typical_frames": "4-6",  "description": "游泳循环" }
+    ],
+    "templates": [
+      {
+        "name": "character_4dir",
+        "description": "4方向角色，每方向含走路动画",
+        "layout": "4 rows × 3-4 frames per row",
+        "size_ratio": "1:1",
+        "recommended_sizes": ["64x64", "128x128", "256x256"],
+        "facing_direction": "4-dir",
+        "actions": [
+          { "name": "walk", "frames": 4, "per_direction": true }
+        ]
+      },
+      {
+        "name": "character_rpg",
+        "description": "RPG角色，含待机/走路/攻击/受伤/死亡",
+        "layout": "5 rows × 4-6 frames per row",
+        "size_ratio": "1:1",
+        "recommended_sizes": ["64x64", "128x128", "256x256"],
+        "facing_direction": "4-dir",
+        "actions": [
+          { "name": "idle",   "frames": 3, "per_direction": true },
+          { "name": "walk",  "frames": 6, "per_direction": true },
+          { "name": "attack","frames": 5, "per_direction": true },
+          { "name": "hurt",  "frames": 2, "per_direction": true },
+          { "name": "die",   "frames": 5, "per_direction": false }
+        ]
+      },
+      {
+        "name": "character_platformer",
+        "description": "横版平台跳跃角色，含待机/跑步/跳跃/攻击/受伤",
+        "layout": "5 rows × 4-6 frames per row",
+        "size_ratio": "1:1 or slightly wider",
+        "recommended_sizes": ["64x64", "128x128", "256x256"],
+        "facing_direction": "side-only",
+        "actions": [
+          { "name": "idle",   "frames": 3, "per_direction": true },
+          { "name": "run",   "frames": 6, "per_direction": true },
+          { "name": "jump",  "frames": 5, "per_direction": true },
+          { "name": "attack","frames": 5, "per_direction": true },
+          { "name": "hurt",  "frames": 2, "per_direction": true }
+        ]
+      },
+      {
+        "name": "character_full",
+        "description": "完整角色，含所有常见动作，4方向",
+        "layout": "variable rows × 4-8 frames per row",
+        "size_ratio": "1:1",
+        "recommended_sizes": ["64x64", "128x128", "256x256"],
+        "facing_direction": "4-dir",
+        "actions": [
+          { "name": "idle",    "frames": 3, "per_direction": true },
+          { "name": "walk",   "frames": 6, "per_direction": true },
+          { "name": "run",    "frames": 6, "per_direction": true },
+          { "name": "jump",   "frames": 5, "per_direction": true },
+          { "name": "fall",   "frames": 3, "per_direction": true },
+          { "name": "attack", "frames": 5, "per_direction": true },
+          { "name": "hurt",   "frames": 2, "per_direction": true },
+          { "name": "die",    "frames": 5, "per_direction": false },
+          { "name": "cast",   "frames": 5, "per_direction": true },
+          { "name": "crouch", "frames": 2, "per_direction": true },
+          { "name": "roll",   "frames": 5, "per_direction": true }
+        ]
+      },
+      {
+        "name": "enemy_simple",
+        "description": "简单敌人，含待机和攻击",
+        "layout": "2 rows × 2-4 frames per row",
+        "size_ratio": "1:1",
+        "recommended_sizes": ["32x32", "64x64", "128x128"],
+        "facing_direction": "single",
+        "actions": [
+          { "name": "idle",   "frames": 3, "per_direction": false },
+          { "name": "attack","frames": 4, "per_direction": false }
+        ]
+      },
+      {
+        "name": "boss_large",
+        "description": "大型Boss，含多种攻击模式",
+        "layout": "4-6 rows × 4-8 frames per row",
+        "size_ratio": "2:1 or larger",
+        "recommended_sizes": ["128x128", "256x256", "512x512"],
+        "facing_direction": "single",
+        "actions": [
+          { "name": "idle",     "frames": 4, "per_direction": false },
+          { "name": "attack_1","frames": 6, "per_direction": false },
+          { "name": "attack_2","frames": 6, "per_direction": false },
+          { "name": "hurt",    "frames": 2, "per_direction": false },
+          { "name": "die",     "frames": 6, "per_direction": false }
+        ]
+      }
+    ]
+  },
+  {
+    "category": "tiles",
+    "templates": [
+      {
+        "name": "tile_basic",
+        "description": "Single tile, no edge matching",
+        "layout": "1 cell",
+        "size_ratio": "1:1"
+      },
+      {
+        "name": "tile_autotile_9",
+        "description": "9-slice autotile (center + 4 edges + 4 corners)",
+        "layout": "3×3 grid",
+        "size_ratio": "1:1 per tile"
+      },
+      {
+        "name": "tile_autotile_47",
+        "description": "47-tile bitmask autotile set",
+        "layout": "variable grid covering all bitmask combinations",
+        "size_ratio": "1:1 per tile"
+      },
+      {
+        "name": "tile_animated",
+        "description": "Animated tile (water, lava, etc.)",
+        "layout": "N frames in a row",
+        "size_ratio": "1:1 per tile",
+        "animations": ["loop"]
+      }
+    ]
+  },
+  {
+    "category": "items",
+    "templates": [
+      {
+        "name": "item_single",
+        "description": "Single item icon",
+        "layout": "1 cell",
+        "size_ratio": "1:1"
+      },
+      {
+        "name": "item_animated",
+        "description": "Animated item (spinning coin, floating potion)",
+        "layout": "4-8 frames in a row",
+        "size_ratio": "1:1",
+        "animations": ["loop"]
+      }
+    ]
+  },
+  {
+    "category": "ui",
+    "templates": [
+      {
+        "name": "ui_button_3state",
+        "description": "Button with normal/hover/pressed states",
+        "layout": "3 cells in a row",
+        "size_ratio": "variable width"
+      },
+      {
+        "name": "ui_9slice",
+        "description": "9-slice scalable panel/frame",
+        "layout": "3×3 grid",
+        "size_ratio": "variable"
+      },
+      {
+        "name": "ui_bar",
+        "description": "Health/mana/stamina bar with frame and fill",
+        "layout": "frame + fill segments",
+        "size_ratio": "wide"
+      }
+    ]
+  },
+  {
+    "category": "effects",
+    "templates": [
+      {
+        "name": "effect_burst",
+        "description": "Explosion/burst effect",
+        "layout": "4-8 frames in a row",
+        "size_ratio": "1:1 or larger",
+        "animations": ["once"]
+      },
+      {
+        "name": "effect_loop",
+        "description": "Looping particle effect (fire, smoke, aura)",
+        "layout": "4-8 frames in a row",
+        "size_ratio": "1:1",
+        "animations": ["loop"]
+      }
+    ]
+  },
+  {
+    "category": "backgrounds",
+    "templates": [
+      {
+        "name": "bg_parallax_layer",
+        "description": "Single parallax layer, horizontally tileable",
+        "layout": "1 wide image",
+        "size_ratio": "4:1 to 8:1 (wide)"
+      },
+      {
+        "name": "bg_full",
+        "description": "Full-screen background",
+        "layout": "1 image at screen resolution",
+        "size_ratio": "16:9 or 4:3"
+      }
+    ]
+  }
+]

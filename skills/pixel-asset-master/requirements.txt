@@ -1,0 +1,5 @@
+# Pixel Asset Master dependencies.
+# Pillow is used for image analysis, validation, quantization, cleanup,
+# and sprite sheet export.
+
+Pillow>=10.0.0
