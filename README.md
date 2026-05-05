@@ -8,6 +8,18 @@ English | [中文](./README_CN.md)
 
 Drop in a game concept, art direction, or reference images — get back a structured pixel asset project with sprites, tiles, items, UI, effects, backgrounds, animation frames, sprite sheets, and export metadata.
 
+我是一名对游戏独立开发感兴趣的大学生，这个项目的灵感来自 PPT-master。它尝试把“用结构化流程辅助创作”的思路迁移到 2D 游戏像素素材生成中，让独立开发者可以更快整理美术方向、生成素材，并保留可复用的项目规范。
+
+## Project Example
+
+下面是一个水墨工笔像素风项目示例，包含两种树与竹子的动画展示。
+
+| Asset | Preview | Frames |
+|-------|---------|--------|
+| Cherry Blossom Tree | ![Cherry Blossom Tree Animation](./sakura_preview.gif) | 6-frame sprite sheet |
+| Willow Tree | ![Willow Tree Animation](./tree_willow_preview.gif) | 6-frame sprite sheet |
+| Bamboo | ![Bamboo Animation](./bamboo_preview.gif) | 4-frame sprite sheet |
+
 > **How it works** — Pixel Asset Master is a workflow skill for AI IDEs. You chat with an AI agent, confirm the style constraints, and the skill guides the agent through project setup, asset planning, generation, validation, and export.
 
 > **Local-first workflow** — Project files and generated assets are stored locally under `projects/`. API usage only depends on whatever AI tool or image provider you choose to connect.
