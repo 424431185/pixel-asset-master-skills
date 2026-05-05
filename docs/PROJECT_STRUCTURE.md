@@ -90,3 +90,4 @@ skills/pixel-asset-master/
 - `sizes_index.json` 扩展至 2048x2048，新增 High-Res Pixel 和 Cinematic Pixel 风格。
 - `sprites_index.json` 人物模板新增 `facing_directions`、`common_actions`、`recommended_sizes`、`actions` 字段。
 - `SKILL.md` Step 4 六项确认第 6 项扩展为动画详细确认（面朝方向 + 动作列表 + 每动作帧数）。
+- `README.md` 与 `README_CN.md` 的 Quick Start 拆分为“无参考图片”和“有参考图片”两种生成方式，并新增 Cursor、Trae、Windsurf 等 AI Coding IDE 的打开与使用说明。

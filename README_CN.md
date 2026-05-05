@@ -49,7 +49,24 @@ cd pixel-asset-master-skills
 pip install -r requirements.txt
 ```
 
-### 3. 创建像素素材项目
+### 3. 放入 AI Coding IDE
+
+下载或解压后，请把整个 **`pixel-asset-master-skills/` 文件夹** 作为工作区打开，而不是只打开其中某个文件。
+
+| IDE | 使用方式 |
+|-----|----------|
+| **Cursor** | `File → Open Folder...` 选择 `pixel-asset-master-skills/`，然后让聊天 Agent 读取 `skills/pixel-asset-master/SKILL.md`。 |
+| **Trae** | 将该文件夹作为项目/工作区打开，在聊天中提及 `skills/pixel-asset-master/SKILL.md` 后再提出素材需求。 |
+| **Windsurf** | 在 Windsurf 中打开该文件夹，使用 Cascade 聊天，并在开始像素素材任务时引用 `skills/pixel-asset-master/SKILL.md`。 |
+| **其他 AI Coding IDE** | 打开仓库根目录，并让 Agent 读取 `skills/pixel-asset-master/SKILL.md`。 |
+
+推荐第一句提示词：
+
+```text
+读取 skills/pixel-asset-master/SKILL.md，并帮我创建一个像素素材项目。
+```
+
+### 4. 创建像素素材项目
 
 ```bash
 python skills/pixel-asset-master/scripts/project_manager.py init demo --size 32x32 --palette DB32
@@ -57,13 +74,50 @@ python skills/pixel-asset-master/scripts/project_manager.py init demo --size 32x
 
 生成项目会保存在 `projects/`，默认不会提交到 Git。
 
-### 4. 导入参考图片
+### 5. 选择生成方式
+
+#### 方式 A — 不使用参考图片
+
+适合只有文字想法、游戏设定、美术方向或剧情描述的情况。
+
+示例提示词：
+
+```text
+读取 skills/pixel-asset-master/SKILL.md。
+创建一个 64x64、4 方向 RPG 角色精灵图。
+风格：水墨工笔像素风。
+动作：待机和走路。
+不使用参考图。
+```
+
+AI 应该执行：
+
+1. 确认风格、尺寸、调色板、面朝方向、动作列表和每个动作帧数。
+2. 创建或更新 `projects/<project_name>/design_spec.md`。
+3. 创建或更新 `projects/<project_name>/spec_lock.md`。
+4. 生成 PNG 素材、动画帧、精灵图和 manifest。
+
+#### 方式 B — 使用参考图片
+
+适合已有角色设定图、瓦片参考、UI 草图、氛围图或游戏截图，并希望生成结果贴近这些参考图的情况。
+
+先导入参考图片：
 
 ```bash
 python skills/pixel-asset-master/scripts/project_manager.py import-sources projects/demo_32x32_YYYYMMDD path/to/reference.png
 ```
 
-### 5. 校验并导出
+然后对 AI 说：
+
+```text
+读取 skills/pixel-asset-master/SKILL.md。
+使用 projects/demo_32x32_YYYYMMDD/images/ 下的图片作为视觉参考。
+生成匹配的像素素材，并保持轮廓、配色氛围和风格约束一致。
+```
+
+AI 应该先分析参考图，提取风格和调色板约束，再继续完成 spec lock、素材生成、校验和导出流程。
+
+### 6. 校验并导出
 
 ```bash
 python skills/pixel-asset-master/scripts/project_manager.py validate projects/demo_32x32_YYYYMMDD
